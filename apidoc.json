@@ -2,12 +2,15 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Um título de API",
-    "description": "Este projeto consiste em um microsserviço desenvolvido em Node.js, utilizando o framework Express, que oferece uma API RESTful para gerenciamento de dados. \n\n**Principais Características e Componentes:**\n\n-   **Arquitetura de Microsserviço:** Projetado como um serviço independente, focado em funcionalidades específicas (CRUDs de entidades).\n\n-   **CRUDs Implementados:**\n    -   **Usuários:** Oferece funcionalidades completas de criação (POST), leitura (GET), atualização (PUT) e exclusão (DELETE) de registros de usuários. Este CRUD é o ponto central do sistema de autenticação.\n    -   **Múltiplos Outros CRUDs:** Além dos usuários, o serviço implementa CRUDs completos para outras entidades, como **Frutas** e **Filmes**, demonstrando a capacidade de gerenciar diferentes tipos de dados.\n\n-   **Autenticação e Autorização (JWT):**\n    -   **Sistema de Login:** Possui uma rota de autenticação (`/auth`) que permite aos usuários fazer login com email e senha.\n    -   **Geração de Token JWT:** Após o login bem-sucedido, um JSON Web Token (JWT) é gerado e retornado ao cliente. Este token serve para autenticar requisições subsequentes.\n    -   **Proteção de Rotas:** Utiliza um middleware de autenticação (`auth.middlewareAuth`) que valida o JWT presente nos cabeçalhos das requisições. As rotas de leitura, atualização e exclusão de usuários (`GET /usuarios`, `PUT /usuarios/:id`, `DELETE /usuarios/:id`), bem como a rota de listagem de frutas (`GET /frutas`), são protegidas, exigindo um token válido para acesso.\n\n-   **Persistência de Dados:** A persistência dos dados é realizada utilizando o `@mmamorim/clapback`, que atua como um banco de dados não relacional baseado em arquivos JSON (`db.json`). Isso proporciona uma solução simples e eficaz para armazenamento de dados no contexto do microsserviço.\n\n-   **Tecnologias Utilizadas:**\n    -   **Node.js e Express:** Para a construção do servidor e das rotas da API.\n    -   **JSON Web Tokens (JWT) e `jsonwebtoken`:** Para o sistema de autenticação.\n    -   **`simple-crypto-js`:** Utilizado para criptografar as senhas dos usuários antes de armazená-las, garantindo maior segurança.\n    -   **`dotenv`:** Para gerenciar variáveis de ambiente (como a chave secreta do JWT e a porta do servidor), facilitando a configuração e o deploy.\n    -   **`body-parser` e `cors`:** Para processamento de requisições e controle de acesso CORS.\n\n-   **Acessibilidade e Documentação:**\n    -   O serviço roda em uma porta configurável (padrão 3000) e é acessível via `http://localhost:3000`.\n    -   Possui um arquivo de especificação OpenAPI (`apidoc.json`), que pode ser utilizado para gerar uma documentação interativa da API (ex: via Swagger UI), facilitando o entendimento e o consumo por outros desenvolvedores ou serviços.\n\nEm suma, este microsserviço é uma aplicação robusta que demonstra a implementação de funcionalidades CRUD essenciais com um sistema de autenticação seguro, cumprindo os requisitos de um projeto de desenvolvimento de API moderno."
+    "title": "A3 - Microsserviços em CRUD e Autenticação",
+    "description": "Este projeto consiste em um microsserviço desenvolvido em Node.js, utilizando o framework Express, que oferece uma API RESTful para gerenciamento de dados. \n\n**Principais Características e Componentes:**\n\n-   **Arquitetura de Microsserviço:** Projetado como um serviço independente, focado em funcionalidades específicas (CRUDs de entidades).\n\n-   **CRUDs Implementados:**\n    -   **Usuários:** Oferece funcionalidades completas de criação (POST), leitura (GET), atualização (PUT) e exclusão (DELETE) de registros de usuários. Este CRUD é o ponto central do sistema de autenticação.\n    -   **Múltiplos Outros CRUDs:** Além dos usuários, o serviço implementa CRUDs completos para outras entidades, como **Frutas**, **Tarefas** (Tasks) e **Filmes**, demonstrando a capacidade de gerenciar diferentes tipos de dados.\n\n-   **Autenticação e Autorização (JWT):**\n    -   **Sistema de Login:** Possui uma rota de autenticação (`/auth`) que permite aos usuários fazer login com email e senha.\n    -   **Geração de Token JWT:** Após o login bem-sucedido, um JSON Web Token (JWT) é gerado e retornado ao cliente. Este token serve para autenticar requisições subsequentes.\n    -   **Proteção de Rotas:** Utiliza um middleware de autenticação (`auth.middlewareAuth`) que valida o JWT presente nos cabeçalhos das requisições. As rotas de leitura, atualização e exclusão de usuários (`GET /usuarios`, `PUT /usuarios/:id`, `DELETE /usuarios/:id`), bem como a rota de listagem de frutas (`GET /frutas`), são protegidas, exigindo um token válido para acesso.\n\n-   **Persistência de Dados:** A persistência dos dados é realizada utilizando o `@mmamorim/clapback`, que atua como um banco de dados não relacional baseado em arquivos JSON (`db.json`). Isso proporciona uma solução simples e eficaz para armazenamento de dados no contexto do microsserviço.\n\n-   **Tecnologias Utilizadas:**\n    -   **Node.js e Express:** Para a construção do servidor e das rotas da API.\n    -   **JSON Web Tokens (JWT) e `jsonwebtoken`:** Para o sistema de autenticação.\n    -   **`simple-crypto-js`:** Utilizado para criptografar as senhas dos usuários antes de armazená-las, garantindo maior segurança.\n    -   **`dotenv`:** Para gerenciar variáveis de ambiente (como a chave secreta do JWT e a porta do servidor), facilitando a configuração e o deploy.\n    -   **`body-parser` e `cors`:** Para processamento de requisições e controle de acesso CORS.\n\n-   **Acessibilidade e Documentação:**\n    -   O serviço roda em uma porta configurável (padrão 3000) e é acessível via `http://localhost:3000`.\n    -   Possui um arquivo de especificação OpenAPI (`apidoc.json`), que pode ser utilizado para gerar uma documentação interativa da API (ex: via Swagger UI), facilitando o entendimento e o consumo por outros desenvolvedores ou serviços.\n\nEm suma, este microsserviço é uma aplicação robusta que demonstra a implementação de funcionalidades CRUD essenciais com um sistema de autenticação seguro, cumprindo os requisitos de um projeto de desenvolvimento de API moderno."
   },
   "host": "localhost:3000",
   "basePath": "/",
-  "schemes": ["http", "https"],
+  "schemes": [
+    "http",
+    "https"
+  ],
   "securityDefinitions": {
     "api_key": {
       "type": "apiKey",
@@ -24,10 +27,14 @@
   "paths": {
     "/auth": {
       "post": {
-        "tags": ["AUTHORIZATION"],
+        "tags": [
+          "AUTHORIZATION"
+        ],
         "summary": "Autoriza e gera token",
         "description": "Devolve um token válido",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "body",
@@ -35,7 +42,11 @@
             "description": "Objeto que descreve uma autorização",
             "schema": {
               "type": "object",
-              "required": ["nome", "senha", "email"],
+              "required": [
+                "nome",
+                "senha",
+                "email"
+              ],
               "properties": {
                 "nome": {
                   "type": "string",
@@ -79,10 +90,14 @@
     },
     "/usuarios": {
       "get": {
-        "tags": ["USUARIOS"],
+        "tags": [
+          "USUARIOS"
+        ],
         "summary": "Retorna todos os usuários",
         "description": "Retorna uma lista de todos os usuários cadastrados",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "Lista de usuários",
@@ -96,10 +111,14 @@
         }
       },
       "post": {
-        "tags": ["USUARIOS"],
+        "tags": [
+          "USUARIOS"
+        ],
         "summary": "Cria um novo usuário",
         "description": "Adiciona um novo usuário ao banco de dados",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "body",
@@ -119,10 +138,14 @@
     },
     "/usuarios/{id}": {
       "put": {
-        "tags": ["USUARIOS"],
+        "tags": [
+          "USUARIOS"
+        ],
         "summary": "Atualiza um usuário existente",
         "description": "Atualiza os dados de um usuário pelo ID",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -150,10 +173,14 @@
         }
       },
       "delete": {
-        "tags": ["USUARIOS"],
+        "tags": [
+          "USUARIOS"
+        ],
         "summary": "Remove um usuário",
         "description": "Remove um usuário da lista de usuários pelo ID",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -175,10 +202,14 @@
     },
     "/frutas": {
       "get": {
-        "tags": ["FRUTAS"],
+        "tags": [
+          "FRUTAS"
+        ],
         "summary": "Retorna todas as frutas",
         "description": "Retorna uma lista de todas as frutas cadastradas",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "Lista de frutas",
@@ -192,10 +223,14 @@
         }
       },
       "post": {
-        "tags": ["FRUTAS"],
+        "tags": [
+          "FRUTAS"
+        ],
         "summary": "Cria uma nova fruta",
         "description": "Adiciona uma nova fruta ao banco de dados",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "body",
@@ -215,10 +250,14 @@
     },
     "/frutas/{id}": {
       "put": {
-        "tags": ["FRUTAS"],
+        "tags": [
+          "FRUTAS"
+        ],
         "summary": "Atualiza uma fruta existente",
         "description": "Atualiza os dados de uma fruta pelo ID",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -246,10 +285,14 @@
         }
       },
       "delete": {
-        "tags": ["FRUTAS"],
+        "tags": [
+          "FRUTAS"
+        ],
         "summary": "Remove fruta",
         "description": "Remove uma fruta da lista de frutas",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -271,10 +314,14 @@
     },
     "/filmes": {
       "get": {
-        "tags": ["FILMES"],
+        "tags": [
+          "FILMES"
+        ],
         "summary": "Retorna todos os filmes",
         "description": "Retorna uma lista de todos os filmes cadastrados",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "Lista de filmes",
@@ -288,10 +335,14 @@
         }
       },
       "post": {
-        "tags": ["FILMES"],
+        "tags": [
+          "FILMES"
+        ],
         "summary": "Cria um novo filme",
         "description": "Adiciona um novo filme ao banco de dados",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "body",
@@ -311,10 +362,14 @@
     },
     "/filmes/{id}": {
       "put": {
-        "tags": ["FILMES"],
+        "tags": [
+          "FILMES"
+        ],
         "summary": "Atualiza um filme existente",
         "description": "Atualiza os dados de um filme pelo ID",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -342,10 +397,14 @@
         }
       },
       "delete": {
-        "tags": ["FILMES"],
+        "tags": [
+          "FILMES"
+        ],
         "summary": "Remove filme",
         "description": "Remove um filme da lista de filmes",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -369,7 +428,10 @@
   "definitions": {
     "Usuario": {
       "type": "object",
-      "required": ["email", "senha"],
+      "required": [
+        "email",
+        "senha"
+      ],
       "properties": {
         "id": {
           "type": "string",
@@ -392,7 +454,10 @@
     },
     "Fruta": {
       "type": "object",
-      "required": ["nome", "cor"],
+      "required": [
+        "nome",
+        "cor"
+      ],
       "properties": {
         "id": {
           "type": "string",
@@ -411,7 +476,11 @@
     },
     "Filme": {
       "type": "object",
-      "required": ["nome", "ano", "duracao"],
+      "required": [
+        "nome",
+        "ano",
+        "duracao"
+      ],
       "properties": {
         "id": {
           "type": "string",
