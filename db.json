@@ -1,0 +1,64 @@
+{
+  "frutas": {
+    "uva": {
+      "id": "uva",
+      "nome": "Uva",
+      "cor": "roxa"
+    },
+    "morango": {
+      "id": "morango",
+      "nome": "Morango",
+      "cor": "roxa"
+    },
+    "banana": {
+      "id": "banana",
+      "nome": "Banana",
+      "cor": "Amarela"
+    },
+    "FRUTA-mELMf": {
+      "id": "FRUTA-mELMf",
+      "nome": "laranja",
+      "cor": "laranja"
+    }
+  },
+  "filmes": {
+    "rambo": {
+      "id": "rambo",
+      "nome": "Rambo I",
+      "ano": 1982,
+      "duracao": 120
+    },
+    "titanic": {
+      "id": "titanic",
+      "nome": "Titanic",
+      "ano": 1999,
+      "duracao": 160
+    },
+    "frozen": {
+      "id": "frozen",
+      "nome": "Frozen xxx",
+      "ano": 2022,
+      "duracao": 110
+    },
+    "FILME-lx4DG": {
+      "id": "FILME-lx4DG",
+      "nome": "Vingadores Ultimato",
+      "ano": 2019,
+      "duracao": 180
+    }
+  },
+  "usuarios": {
+    "USER-a4bYr": {
+      "id": "USER-a4bYr",
+      "nome": "Fernando Dias do Nascimento",
+      "email": "82325780@ulife.com.br",
+      "senha": "7f3beec0903234351e0772a8849a9b11a753f6d62f14732c3eec04b5108a91f7p1e1iVgmSy0YwFxRZOArZQ==5ea6b52a19f537826166d5447ee3c9ebc7359dba2454b05daf78d41bb79d4259"
+    },
+    "USER-LlpJF": {
+      "id": "USER-LlpJF",
+      "nome": "Rafael Santiago",
+      "email": "82327312@ulife.com.br",
+      "senha": "31b2cd92a915382cbf52f76cd1cae650ec2f433fb8e48c45b33005bbaaec56e5YVSO8tnxk58LAp2bLcfSfQ==8edd00379e5e1de4b09e7cb1b92c958e1a01f2b4362f9e023b02d4450342a80d"
+    }
+  }
+}

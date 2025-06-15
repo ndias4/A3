@@ -1,0 +1,563 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Um título de API",
+    "description": "Descrição da API"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ],
+  "paths": {
+    "/auth": {
+      "post": {
+        "tags": [
+          "AUTHORIZATION"
+        ],
+        "summary": "Autoriza e gera token",
+        "description": "Devolve um token válido",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "auth",
+            "description": "Objeto que descreve um autorização",
+            "schema": {
+              "type": "object",
+              "required": [
+                "nome",
+                "senha",
+                "email"
+              ],
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Fernando Dias do Nascimento"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "82325780@ulife.com.br"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "12345"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Operação de Login bem sucedida",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "example": "token generated"
+                },
+                "token": {
+                  "type": "string",
+                  "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de autenticação"
+          }
+        }
+      }
+    },
+    "/usuarios": {
+      "get": {
+        "tags": [
+          "USUARIOS"
+        ],
+        "summary": "Retorna todos os usuários",
+        "description": "Retorna uma lista de todos os usuários cadastrados",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de usuários",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Usuario"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "USUARIOS"
+        ],
+        "summary": "Cria um novo usuário",
+        "description": "Adiciona um novo usuário ao banco de dados",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "usuario",
+            "description": "Objeto que descreve um novo usuário",
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Usuário criado com sucesso"
+          }
+        }
+      }
+    },
+    "/usuarios/{id}": {
+      "put": {
+        "tags": [
+          "USUARIOS"
+        ],
+        "summary": "Atualiza um usuário existente",
+        "description": "Atualiza os dados de um usuário pelo ID",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "ID do usuário a ser atualizado",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "usuario",
+            "description": "Objeto que descreve o usuário a ser atualizado",
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Usuário atualizado com sucesso"
+          },
+          "400": {
+            "description": "Usuário não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "USUARIOS"
+        ],
+        "summary": "Remove um usuário",
+        "description": "Remove um usuário da lista de usuários pelo ID",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "ID do usuário a ser removido",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Usuário removido com sucesso"
+          },
+          "400": {
+            "description": "Usuário não encontrado"
+          }
+        }
+      }
+    },
+    "/frutas": {
+      "get": {
+        "tags": [
+          "FRUTAS"
+        ],
+        "summary": "Retorna todas as frutas",
+        "description": "Retorna uma lista de todas as frutas cadastradas",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de frutas",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Fruta"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "FRUTAS"
+        ],
+        "summary": "Cria uma nova fruta",
+        "description": "Adiciona uma nova fruta ao banco de dados",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "fruta",
+            "description": "Objeto que descreve uma nova fruta",
+            "schema": {
+              "$ref": "#/definitions/Fruta"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Fruta criada com sucesso"
+          }
+        }
+      }
+    },
+    "/frutas/{id}": {
+      "put": {
+        "tags": [
+          "FRUTAS"
+        ],
+        "summary": "Atualiza uma fruta existente",
+        "description": "Atualiza os dados de uma fruta pelo ID",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "ID da fruta a ser atualizada",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "fruta",
+            "description": "Objeto que descreve a fruta a ser atualizada",
+            "schema": {
+              "$ref": "#/definitions/Fruta"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Fruta atualizada com sucesso"
+          },
+          "400": {
+            "description": "Fruta não encontrada"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "FRUTAS"
+        ],
+        "summary": "Remove fruta",
+        "description": "Remove uma fruta na lista de frutas",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "ID da fruta a ser removida",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Operação Remoção bem sucedida"
+          },
+          "400": {
+            "description": "FRUTA NÃO ENCONTRADA"
+          }
+        }
+      }
+    },
+    "/filmes": {
+      "get": {
+        "tags": [
+          "FILMES"
+        ],
+        "summary": "Retorna todos os filmes",
+        "description": "Retorna uma lista de todos os filmes cadastrados",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de filmes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Filme"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "FILMES"
+        ],
+        "summary": "Cria um novo filme",
+        "description": "Adiciona um novo filme ao banco de dados",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "filme",
+            "description": "Objeto que descreve um novo filme",
+            "schema": {
+              "$ref": "#/definitions/Filme"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Filme criado com sucesso"
+          }
+        }
+      }
+    },
+    "/filmes/{id}": {
+      "put": {
+        "tags": [
+          "FILMES"
+        ],
+        "summary": "Atualiza um filme existente",
+        "description": "Atualiza os dados de um filme pelo ID",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "ID do filme a ser atualizado",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "filme",
+            "description": "Objeto que descreve o filme a ser atualizado",
+            "schema": {
+              "$ref": "#/definitions/Filme"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Filme atualizado com sucesso"
+          },
+          "400": {
+            "description": "Filme não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "FILMES"
+        ],
+        "summary": "Remove filme",
+        "description": "Remove um filme da lista de filmes",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "ID do filme a ser removido",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Operação Remoção bem sucedida"
+          },
+          "400": {
+            "description": "FILME NÃO ENCONTRADO"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Usuario": {
+      "type": "object",
+      "required": [
+        "email",
+        "senha"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true,
+          "example": "USER-xyz"
+        },
+        "nome": {
+          "type": "string",
+          "example": "rafael"
+        },
+        "email": {
+          "type": "string",
+          "example": "teste@example.com"
+        },
+        "senha": {
+          "type": "string",
+          "example": "minhasenha123"
+        }
+      }
+    },
+    "Fruta": {
+      "type": "object",
+      "required": [
+        "nome",
+        "cor"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true,
+          "example": "FRUTA-abc"
+        },
+        "nome": {
+          "type": "string",
+          "example": "Maçã"
+        },
+        "cor": {
+          "type": "string",
+          "example": "Vermelha"
+        }
+      }
+    },
+    "Filme": {
+      "type": "object",
+      "required": [
+        "nome",
+        "ano",
+        "duracao"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true,
+          "example": "FILME-xyz"
+        },
+        "nome": {
+          "type": "string",
+          "example": "O Poderoso Chefão"
+        },
+        "ano": {
+          "type": "integer",
+          "example": 1972
+        },
+        "duracao": {
+          "type": "integer",
+          "example": 175
+        }
+      }
+    }
+  }
+}
