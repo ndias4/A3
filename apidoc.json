@@ -7,45 +7,35 @@
   },
   "host": "localhost:3000",
   "basePath": "/",
-  "schemes": [
-    "http",
-    "https"
-  ],
+  "schemes": ["http", "https"],
   "securityDefinitions": {
     "api_key": {
       "type": "apiKey",
       "name": "Authorization",
-      "in": "header"
+      "in": "header",
+      "description": "Formato: Bearer {token}"
     }
   },
   "security": [
     {
-      "Bearer": []
+      "api_key": []
     }
   ],
   "paths": {
     "/auth": {
       "post": {
-        "tags": [
-          "AUTHORIZATION"
-        ],
+        "tags": ["AUTHORIZATION"],
         "summary": "Autoriza e gera token",
         "description": "Devolve um token válido",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "in": "body",
             "name": "auth",
-            "description": "Objeto que descreve um autorização",
+            "description": "Objeto que descreve uma autorização",
             "schema": {
               "type": "object",
-              "required": [
-                "nome",
-                "senha",
-                "email"
-              ],
+              "required": ["nome", "senha", "email"],
               "properties": {
                 "nome": {
                   "type": "string",
@@ -83,24 +73,16 @@
           "400": {
             "description": "Erro de autenticação"
           }
-        }
+        },
+        "security": []
       }
     },
     "/usuarios": {
       "get": {
-        "tags": [
-          "USUARIOS"
-        ],
+        "tags": ["USUARIOS"],
         "summary": "Retorna todos os usuários",
         "description": "Retorna uma lista de todos os usuários cadastrados",
-        "produces": [
-          "application/json"
-        ],
-        "security": [
-          {
-            "api_key": []
-          }
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "Lista de usuários",
@@ -114,19 +96,10 @@
         }
       },
       "post": {
-        "tags": [
-          "USUARIOS"
-        ],
+        "tags": ["USUARIOS"],
         "summary": "Cria um novo usuário",
         "description": "Adiciona um novo usuário ao banco de dados",
-        "produces": [
-          "application/json"
-        ],
-        "security": [
-          {
-            "api_key": []
-          }
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "in": "body",
@@ -146,19 +119,10 @@
     },
     "/usuarios/{id}": {
       "put": {
-        "tags": [
-          "USUARIOS"
-        ],
+        "tags": ["USUARIOS"],
         "summary": "Atualiza um usuário existente",
         "description": "Atualiza os dados de um usuário pelo ID",
-        "produces": [
-          "application/json"
-        ],
-        "security": [
-          {
-            "api_key": []
-          }
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "in": "path",
@@ -186,19 +150,10 @@
         }
       },
       "delete": {
-        "tags": [
-          "USUARIOS"
-        ],
+        "tags": ["USUARIOS"],
         "summary": "Remove um usuário",
         "description": "Remove um usuário da lista de usuários pelo ID",
-        "produces": [
-          "application/json"
-        ],
-        "security": [
-          {
-            "api_key": []
-          }
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "in": "path",
@@ -220,19 +175,10 @@
     },
     "/frutas": {
       "get": {
-        "tags": [
-          "FRUTAS"
-        ],
+        "tags": ["FRUTAS"],
         "summary": "Retorna todas as frutas",
         "description": "Retorna uma lista de todas as frutas cadastradas",
-        "produces": [
-          "application/json"
-        ],
-        "security": [
-          {
-            "api_key": []
-          }
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "Lista de frutas",
@@ -246,19 +192,10 @@
         }
       },
       "post": {
-        "tags": [
-          "FRUTAS"
-        ],
+        "tags": ["FRUTAS"],
         "summary": "Cria uma nova fruta",
         "description": "Adiciona uma nova fruta ao banco de dados",
-        "produces": [
-          "application/json"
-        ],
-        "security": [
-          {
-            "api_key": []
-          }
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "in": "body",
@@ -278,19 +215,10 @@
     },
     "/frutas/{id}": {
       "put": {
-        "tags": [
-          "FRUTAS"
-        ],
+        "tags": ["FRUTAS"],
         "summary": "Atualiza uma fruta existente",
         "description": "Atualiza os dados de uma fruta pelo ID",
-        "produces": [
-          "application/json"
-        ],
-        "security": [
-          {
-            "api_key": []
-          }
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "in": "path",
@@ -318,19 +246,10 @@
         }
       },
       "delete": {
-        "tags": [
-          "FRUTAS"
-        ],
+        "tags": ["FRUTAS"],
         "summary": "Remove fruta",
-        "description": "Remove uma fruta na lista de frutas",
-        "produces": [
-          "application/json"
-        ],
-        "security": [
-          {
-            "api_key": []
-          }
-        ],
+        "description": "Remove uma fruta da lista de frutas",
+        "produces": ["application/json"],
         "parameters": [
           {
             "in": "path",
@@ -352,19 +271,10 @@
     },
     "/filmes": {
       "get": {
-        "tags": [
-          "FILMES"
-        ],
+        "tags": ["FILMES"],
         "summary": "Retorna todos os filmes",
         "description": "Retorna uma lista de todos os filmes cadastrados",
-        "produces": [
-          "application/json"
-        ],
-        "security": [
-          {
-            "api_key": []
-          }
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "Lista de filmes",
@@ -378,19 +288,10 @@
         }
       },
       "post": {
-        "tags": [
-          "FILMES"
-        ],
+        "tags": ["FILMES"],
         "summary": "Cria um novo filme",
         "description": "Adiciona um novo filme ao banco de dados",
-        "produces": [
-          "application/json"
-        ],
-        "security": [
-          {
-            "api_key": []
-          }
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "in": "body",
@@ -410,19 +311,10 @@
     },
     "/filmes/{id}": {
       "put": {
-        "tags": [
-          "FILMES"
-        ],
+        "tags": ["FILMES"],
         "summary": "Atualiza um filme existente",
         "description": "Atualiza os dados de um filme pelo ID",
-        "produces": [
-          "application/json"
-        ],
-        "security": [
-          {
-            "api_key": []
-          }
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "in": "path",
@@ -450,19 +342,10 @@
         }
       },
       "delete": {
-        "tags": [
-          "FILMES"
-        ],
+        "tags": ["FILMES"],
         "summary": "Remove filme",
         "description": "Remove um filme da lista de filmes",
-        "produces": [
-          "application/json"
-        ],
-        "security": [
-          {
-            "api_key": []
-          }
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "in": "path",
@@ -486,10 +369,7 @@
   "definitions": {
     "Usuario": {
       "type": "object",
-      "required": [
-        "email",
-        "senha"
-      ],
+      "required": ["email", "senha"],
       "properties": {
         "id": {
           "type": "string",
@@ -512,10 +392,7 @@
     },
     "Fruta": {
       "type": "object",
-      "required": [
-        "nome",
-        "cor"
-      ],
+      "required": ["nome", "cor"],
       "properties": {
         "id": {
           "type": "string",
@@ -534,11 +411,7 @@
     },
     "Filme": {
       "type": "object",
-      "required": [
-        "nome",
-        "ano",
-        "duracao"
-      ],
+      "required": ["nome", "ano", "duracao"],
       "properties": {
         "id": {
           "type": "string",

@@ -1,24 +1,19 @@
 {
   "frutas": {
-    "uva": {
-      "id": "uva",
-      "nome": "Uva",
-      "cor": "roxa"
-    },
-    "morango": {
-      "id": "morango",
-      "nome": "Morango",
-      "cor": "roxa"
-    },
-    "banana": {
-      "id": "banana",
-      "nome": "Banana",
-      "cor": "Amarela"
-    },
     "FRUTA-mELMf": {
       "id": "FRUTA-mELMf",
       "nome": "laranja",
       "cor": "laranja"
+    },
+    "FRUTA-7HSdr": {
+      "id": "FRUTA-7HSdr",
+      "nome": "Jaboticaba",
+      "cor": "Roxo"
+    },
+    "FRUTA-xFN-q": {
+      "id": "FRUTA-xFN-q",
+      "nome": "Morango",
+      "cor": "Vermelho"
     }
   },
   "filmes": {
@@ -34,12 +29,6 @@
       "ano": 1999,
       "duracao": 160
     },
-    "frozen": {
-      "id": "frozen",
-      "nome": "Frozen xxx",
-      "ano": 2022,
-      "duracao": 110
-    },
     "FILME-lx4DG": {
       "id": "FILME-lx4DG",
       "nome": "Vingadores Ultimato",
@@ -50,15 +39,15 @@
   "usuarios": {
     "USER-a4bYr": {
       "id": "USER-a4bYr",
-      "nome": "Fernando Dias do Nascimento",
+      "nome": "Fernando Dias",
       "email": "82325780@ulife.com.br",
-      "senha": "7f3beec0903234351e0772a8849a9b11a753f6d62f14732c3eec04b5108a91f7p1e1iVgmSy0YwFxRZOArZQ==5ea6b52a19f537826166d5447ee3c9ebc7359dba2454b05daf78d41bb79d4259"
+      "senha": "b86c8f746a6e8ece7abe7495d9d57638027053473bda5595f2da4592d308613dVFm7MNK1L8WPyXttVcNkIg==d6c0b4b620f717f846b32ff83f41fd6841b78812ef0c8574f683328121c91dc4"
     },
-    "USER-LlpJF": {
-      "id": "USER-LlpJF",
-      "nome": "Rafael Santiago",
-      "email": "82327312@ulife.com.br",
-      "senha": "31b2cd92a915382cbf52f76cd1cae650ec2f433fb8e48c45b33005bbaaec56e5YVSO8tnxk58LAp2bLcfSfQ==8edd00379e5e1de4b09e7cb1b92c958e1a01f2b4362f9e023b02d4450342a80d"
+    "USER-rCdne": {
+      "id": "USER-rCdne",
+      "nome": "Daniel Koshino",
+      "email": "823214243@ulife.com.br",
+      "senha": "f38508ae905122ebae9002bdb04bf98b164b42c4f68695059d5361e3b6b06f26otJpW0SF2EvzVuUvKjB68w==13b570d5ae4398992f68c88b6edeee1ebd7b63b6f5cb1ce065bb2de9b8a3d46d"
     }
   }
 }
